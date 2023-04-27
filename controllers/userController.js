@@ -1,31 +1,9 @@
 const { ObjectId } = require('mongoose').Types;
 const { user, thought } = require('../models');
 
-// Aggregate function to get the number of users overall
-const headCount = async () =>
-  user.aggregate()
-    .count('userCount')
-    .then((numberOfusers) => numberOfusers);
-
-// Aggregate function for getting the overall grade using $avg
-const grade = async (userId) =>
-  user.aggregate([
-    // only include the given user by using $match
-    { $match: { _id: ObjectId(userId) } },
-    {
-      $unwind: '$assignments',
-    },
-    {
-      $group: {
-        _id: ObjectId(userId),
-        overallGrade: { $avg: '$assignments.score' },
-      },
-    },
-  ]);
-
 module.exports = {
   // Get all users
-  getusers(req, res) {
+  getUsers(req, res) {
     user.find()
       .then(async (users) => {
         const userObj = {
@@ -87,13 +65,13 @@ module.exports = {
       });
   },
 
-  // Add an assignment to a user
-  addAssignment(req, res) {
-    console.log('You are adding an assignment');
+  // Add a friend
+  addfriend(req, res) {
+    console.log('You are adding a friend');
     console.log(req.body);
     user.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { assignments: req.body } },
+      { $addToSet: { friends: req.body } },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -105,11 +83,11 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove assignment from a user
-  removeAssignment(req, res) {
+  // Remove friend
+  removefriend(req, res) {
     user.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { assignment: { assignmentId: req.params.assignmentId } } },
+      { $pull: { friend: { friendId: req.params.friendId } } },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -122,3 +100,5 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 };
+
+module.exports = userController;
