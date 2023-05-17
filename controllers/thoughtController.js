@@ -1,9 +1,9 @@
-const { thought, user } = require('../models');
+const { Thought, User } = require('../models');
 
 module.exports = {
   // Get all thoughts
   getthoughts(req, res) {
-    thought.find()
+    Thought.find()
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },

@@ -1,10 +1,10 @@
 const { ObjectId } = require('mongoose').Types;
-const { user, thought } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all users
   getUsers(req, res) {
-    user.find()
+    User.find()
       .then(async (users) => {
         const userObj = {
           users,
