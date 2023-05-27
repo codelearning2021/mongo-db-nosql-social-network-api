@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require("./Reaction");
+// const reactionSchema = require("./Reaction");
 const dateFormat = require('../utils/dateFormat')
 
 const assignmentSchema = new Schema(
@@ -13,7 +13,7 @@ const assignmentSchema = new Schema(
     createdAt: {
       type: Date,
       default: "timestamp",
-      opts
+      // opts
     },
 
     username: {
@@ -26,12 +26,8 @@ const assignmentSchema = new Schema(
     },
   },
   {
-    reactions: {
-      required: true,
-    },
     toJSON: {
       virtuals: true,
-      getters: true,
     },
     id: false,
   }
@@ -61,14 +57,14 @@ const thoughtSchema = new Schema(
       default: Date.now,
       get: timestamp => dateFormat(timestamp)
     },
-
+  },
+  {
     toJSON: {
       virtuals: true,
-      getters: true,
     },
     id: false,
-
-  });
+  }
+  );
 
 // const opts = {
 //   // Make Mongoose use Unix time (seconds since Jan 1, 1970)
@@ -76,7 +72,7 @@ const thoughtSchema = new Schema(
 // };
 
 // Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query
-userSchema.virtual("reactionCount").get(function () {
+thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 

@@ -1,6 +1,6 @@
 const { Thought, User } = require('../models');
 
-module.exports = {
+const thoughtController = {
   // Get all thoughts
   getthoughts(req, res) {
     Thought.find()
@@ -33,7 +33,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
-          : user.deleteMany({ _id: { $in: thought.users } })
+          : User.deleteMany({ _id: { $in: thought.users } })
       )
       .then(() => res.json({ message: 'thought and users deleted!' }))
       .catch((err) => res.status(500).json(err));

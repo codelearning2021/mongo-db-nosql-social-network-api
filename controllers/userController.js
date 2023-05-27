@@ -1,16 +1,12 @@
-const { ObjectId } = require('mongoose').Types;
+const req = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
-module.exports = {
+const userController= {
   // Get all users
   getUsers(req, res) {
     User.find()
-      .then(async (users) => {
-        const userObj = {
-          users,
-          headCount: await headCount(),
-        };
-        return res.json(userObj);
+      .then((users) => {
+        return res.json(users);
       })
       .catch((err) => {
         console.log(err);
@@ -21,14 +17,9 @@ module.exports = {
   getSingleuser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
-      .then(async (user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json({
-              user,
-              grade: await grade(req.params.userId),
-            })
-      )
+      .then((users) => {
+        return res.json(users);
+      })
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -71,7 +62,7 @@ module.exports = {
     console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.body } },
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -87,7 +78,7 @@ module.exports = {
   removefriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friend: { friendId: req.params.friendId } } },
+      { $pull: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
