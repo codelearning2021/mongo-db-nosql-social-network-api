@@ -2,10 +2,11 @@ const { Schema, model } = require('mongoose');
 // const reactionSchema = require("./Reaction");
 const dateFormat = require('../utils/dateFormat')
 
-const assignmentSchema = new Schema(
+const reactionSchema = new Schema(
   {
     thoughttext: {
-      type: Schema.Types.ObjectId,
+      // type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       maxlength: 280,
       minlength: 1,
@@ -36,11 +37,13 @@ const assignmentSchema = new Schema(
 const thoughtSchema = new Schema(
   {
     reactionID: {
-      type: Schema.Types.ObjectId,
-      required: true,
+      // type: Schema.Types.ObjectId,
+      type: String,
+      // required: true,
       maxlength: 280,
       minlength: 1,
-      default: new Schema.Types.ObjectId,
+      default: new String,
+      // default: new Schema.Types.ObjectId,
     },
     username: {
       type: String,
@@ -51,7 +54,8 @@ const thoughtSchema = new Schema(
       Required: true,
       maxlength: 280,
     },
-
+    
+    // use the time converter in utils to post the correct time
     createdAt: {
       type: Date,
       default: Date.now,

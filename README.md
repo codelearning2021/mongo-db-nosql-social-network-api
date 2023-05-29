@@ -1,10 +1,5 @@
 # mongo-db-nosql-social-network-api
 
-
-Demo video link
-
-
-
 ## Description
 This is an API social network build utilizing MongoDB NoSQL for the backend. Postman or Insomnia is used to fulfill the testing requirements.
 
@@ -14,8 +9,7 @@ This is an API social network build utilizing MongoDB NoSQL for the backend. Pos
   * [Usage](#usage)
   * [User-Story](#user-story)
   * [Acceptance-Criteria](#acceptance-criteria)
-  * [Animation](#animation)
-  * [Links](#links)
+  * [Walkthrough](#walkthrough)
   * [License](#license)
   * [Questions](#questions)
 
@@ -24,9 +18,23 @@ This is an API social network build utilizing MongoDB NoSQL for the backend. Pos
 2. Mongoose
 3. Javascript
 4. Nodemon
-5. Postman 
+5. Postman
 6. Express
 
+## Installation
+Copy repository and run
+```terminal
+npm I
+```
+
+## Usage
+
+Start the program by running
+```terminal
+npm start
+```
+
+## Walkthrough
 
 ## User Story
 
@@ -50,15 +58,9 @@ WHEN I test API POST and DELETE routes in Insomnia
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
 
- ### Animation
 
 
-  ### Links
-
-  • Deployed Application URL: ()
-  • Repository URL: ()
-
-  ## License 
+## License 
   This project is licensed under MIT
   ![Github licence](http://img.shields.io/badge/license-MIT-blue.svg)
 
