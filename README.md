@@ -35,6 +35,7 @@ npm start
 ```
 
 ## Walkthrough
+Download here: https://github.com/codelearning2021/mongo-db-nosql-social-network-api/raw/master/NoSQL%20Social%20network%20walkthrough.mp4
 
 ## User Story
 
